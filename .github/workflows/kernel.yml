@@ -11,25 +11,6 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    - name: Set GitHub configs
-      run: |
-        git config --global user.name "Batu33TR"
-        git config --global user.email "batuhanarslanoglu4@gmail.com"
-        git config --global color.ui true
-        git config --global credential.helper store
-        echo "https://Batu33TR:${{ secrets.GH_TOKEN }}@github.com" > ~/.git-credentials
-        git config --global user.signingkey 56008DEB21E2C8D3
-        git config --global commit.gpgsign true
-
-    - name: Setup Rclone
-      run: |
-        git clone https://github.com/Batu33TR/rclone && sudo apt install rclone -y
-        mkdir -p /home/runner/.config/rclone
-        mv rclone/rclone.conf /home/runner/.config/rclone
-        rm -rf rclone
-        mkdir /home/runner/drive
-        rclone mount --daemon gdrive:/ /home/runner/drive
-
     - name: Clone kernel
       run: git clone https://github.com/ProjectMedusaAndroid/android_kernel_samsung_msm8917_Q /home/runner/kernel && git clone https://github.com/Batu33TR/infoscripts /home/runner/infoscripts
 
