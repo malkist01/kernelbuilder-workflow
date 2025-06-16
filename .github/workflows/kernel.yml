@@ -9,12 +9,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-
-    - uses: fastai/workflows/ssh@master
-      with:
-        ssh_key: ${{ secrets.SSH_KEY }}
-        key_file: id_ecdsa
-
     - uses: actions/checkout@v2
 
     - name: Set GitHub configs
@@ -26,14 +20,6 @@ jobs:
         echo "https://Batu33TR:${{ secrets.GH_TOKEN }}@github.com" > ~/.git-credentials
         git config --global user.signingkey 56008DEB21E2C8D3
         git config --global commit.gpgsign true
-
-    - name: Configure GPG RSA key
-      run: |
-        cd /home/runner
-        git clone https://github.com/Batu33TR/gnupg gpgkey
-        gpg --import ~/gpgkey/gpgsecret.asc
-        rm -rf ~/gpgkey
-        echo "export GPG_TTY=$(tty)" >> ~/.bash_profile
 
     - name: Setup Rclone
       run: |
