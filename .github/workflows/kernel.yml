@@ -21,7 +21,7 @@ jobs:
           binutils-aarch64-linux-gnu binutils-arm-linux-gnueabi
 
     - name: Clone kernel
-      run: git clone https://github.com/ProjectMedusaAndroid/android_kernel_samsung_msm8917_Q /home/runner/kernel && git clone https://github.com/Batu33TR/infoscripts /home/runner/infoscripts
+      run: git clone https://github.com/ProjectMedusaAndroid/android_kernel_samsung_msm8917_Q /home/runner/kernel
 
     - name: Execute compile script
       run: cd ${HOME}/kernel && sh ${HOME}/kernel/build_medusa.sh
